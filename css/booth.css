@@ -166,6 +166,46 @@ p.lead {
     border-radius: 38px;
 }
 
+.phone-frame.small {
+    width: 310px;
+    padding: 14px;
+    border-radius: 44px;
+}
+
+.phone-frame.small img {
+    border-radius: 32px;
+}
+
+.scan-row {
+    display: flex;
+    align-items: center;
+    gap: 46px;
+    margin-top: 26px;
+}
+
+.scan-arrow {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    color: var(--brand);
+}
+
+.scan-result {
+    max-height: 540px;
+    border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(28, 43, 51, 0.35);
+    border: 1px solid rgba(28, 43, 51, 0.12);
+    background: #fff;
+}
+
+.scan-caption {
+    margin: 20px 0 0;
+    font-size: 26px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 640px;
+}
+
 .title-slide {
     align-items: center;
     text-align: center;
