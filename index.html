@@ -11,7 +11,13 @@
             <p>Your browser doesn't support impress.js — showing slides as a list.</p>
         </div>
 
-        <div id="impress" data-autoplay="9" data-transition-duration="900">
+        <div
+            id="impress"
+            data-autoplay="9"
+            data-transition-duration="900"
+            data-width="1560"
+            data-height="1080"
+            data-max-scale="3">
             <div
                 id="welcome"
                 class="step title-slide"
@@ -174,6 +180,12 @@
                 data-scale="23"></div>
         </div>
 
+        <button id="fullscreen-btn" type="button" title="Full screen (F)">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+            </svg>
+        </button>
+
         <script src="js/impress.js"></script>
         <script>
             impress().init();
@@ -197,6 +209,31 @@
             document.addEventListener("mousemove", wake);
             document.addEventListener("touchstart", wake);
             wake();
+
+            const fsButton = document.getElementById("fullscreen-btn");
+            const fsElement = document.documentElement;
+            const inFullscreen = () =>
+                document.fullscreenElement || document.webkitFullscreenElement;
+            const toggleFullscreen = () => {
+                if (inFullscreen()) {
+                    (document.exitFullscreen || document.webkitExitFullscreen).call(
+                        document,
+                    );
+                } else {
+                    (
+                        fsElement.requestFullscreen ||
+                        fsElement.webkitRequestFullscreen
+                    ).call(fsElement);
+                }
+            };
+            fsButton.addEventListener("click", e => {
+                e.stopPropagation();
+                toggleFullscreen();
+                fsButton.blur();
+            });
+            document.addEventListener("keydown", e => {
+                if (e.key === "f" || e.key === "F") toggleFullscreen();
+            });
         </script>
     </body>
 </html>
