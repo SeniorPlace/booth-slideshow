@@ -1,0 +1,19 @@
+name: Package
+on:
+    push:
+        branches: [master]
+permissions:
+    contents: write
+jobs:
+    zip:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: zip -r booth-slideshow.zip index.html css js img fonts README.md
+            - env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  gh release delete latest --yes --cleanup-tag || true
+                  gh release create latest booth-slideshow.zip \
+                      --title "Booth slideshow (latest)" \
+                      --notes "Auto-packaged from the newest commit. Unzip and open index.html."
